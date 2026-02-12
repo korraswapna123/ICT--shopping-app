@@ -1,0 +1,109 @@
+.page {
+  min-height: 100vh;
+   background-image: url('https://4kwallpapers.com/images/wallpapers/3d-render-waves-girly-pink-abstract-aesthetic-pattern-5k-2560x1440-7041.jpg');
+  background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-box {
+  width: 380px;
+  height: 520px;
+
+  /* TRANSPARENT GLASS EFFECT */
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
+.register-box h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.form-group label {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.captcha-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.captcha-box {
+  background: #f1f1f1;
+  padding: 6px 14px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  border-radius: 6px;
+}
+
+.refresh-btn {
+  border: none;
+  background: #ef35d3;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.terms {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  background: #f755c9;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background: #8e3db5;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 12px;
+}
+
+.login-link a {
+  color: #6a1b9a;
+  font-weight: bold;
+  text-decoration: none;
+}

@@ -1,0 +1,59 @@
+<div class="page">
+  <form class="register-box" (ngSubmit)="submitForm()">
+
+    <h2>Register</h2>
+
+    <div class="form-group">
+      <label>Enter Full Name</label>
+      <input type="text" name="fullName" [(ngModel)]="fullName" required />
+    </div>
+
+    <div class="form-group">
+      <label>Enter Username</label>
+      <input type="text" name="username" [(ngModel)]="username" required />
+    </div>
+
+    <div class="form-group">
+      <label>Enter Password</label>
+      <input type="password" name="password" [(ngModel)]="password" required />
+    </div>
+
+    <div class="form-group">
+      <label>Date of Birth</label>
+      <input type="date" name="dob" [(ngModel)]="dob" />
+    </div>
+
+    <div class="form-group">
+      <label>Area</label>
+      <textarea name="area" rows="3" [(ngModel)]="area"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Captcha</label>
+      <div class="captcha-row">
+        <span class="captcha-box">{{ captcha }}</span>
+        <button type="button" class="refresh-btn" (click)="generateCaptcha()">↻</button>
+      </div>
+      <input
+        type="text"
+        name="captchaInput"
+        [(ngModel)]="captchaInput"
+        placeholder="Enter captcha"
+        required
+      />
+    </div>
+
+    <div class="terms">
+      <input type="checkbox" name="agree" [(ngModel)]="agree" />
+      <span>I agree to Terms & Conditions</span>
+    </div>
+
+    <button type="submit" class="submit-btn">Register</button>
+
+    <p class="login-link">
+      Already have an account?
+      <a routerLink="/login">Login</a>
+    </p>
+
+  </form>
+</div>

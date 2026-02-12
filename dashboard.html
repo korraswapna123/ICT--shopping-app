@@ -1,0 +1,112 @@
+<div class="dashboard">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" [class.closed]="!isSidebarOpen">
+    <h2 class="sidebar-title">Categories</h2>
+
+    <ul class="category-list">
+      <li (click)="setView('women')" [class.active]="currentView==='women'">Women</li>
+      <li (click)="setView('men')" [class.active]="currentView==='men'">Men</li>
+      <li (click)="setView('kids')" [class.active]="currentView==='kids'">Kids</li>
+      <li class="manage" (click)="setView('manage')" [class.active]="currentView==='manage'">
+        Manage Products
+      </li>
+    </ul>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+      <button class="toggle-btn" (click)="toggleSidebar()">☰</button>
+      <h2>{{ currentView | titlecase }}</h2>
+    </div>
+
+    <!-- SUBCATEGORY BAR -->
+    <div class="sub-category-bar" *ngIf="currentView !== 'manage'">
+      <button
+        *ngFor="let sub of subCategories[currentView | titlecase]"
+        (click)="setSubCategory(sub)"
+        [class.active]="selectedSubCategory === sub">
+        {{ sub }}
+      </button>
+    </div>
+
+    <!-- MANAGE TABLE -->
+    <table *ngIf="currentView === 'manage'">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Subcategory</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let p of products">
+          <td>{{ p.name }}</td>
+          <td>{{ p.category }}</td>
+          <td>{{ p.subCategory }}</td>
+
+          <td>
+            <span *ngIf="editingProductId !== p.id">₹{{ p.price }}</span>
+            <input *ngIf="editingProductId === p.id"
+                   type="number"
+                   [(ngModel)]="editedPrice">
+          </td>
+
+          <td class="action-btns">
+            <button class="edit" *ngIf="editingProductId !== p.id"
+                    (click)="startEdit(p)">Edit</button>
+
+            <button class="save" *ngIf="editingProductId === p.id"
+                    (click)="updatePrice(p)">Save</button>
+
+            <button class="cancel" *ngIf="editingProductId === p.id"
+                    (click)="cancelEdit()">Cancel</button>
+
+            <button class="delete" (click)="deleteProduct(p.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ADD PRODUCT -->
+    <div class="form-box" *ngIf="currentView === 'manage'">
+      <h3>Add Product</h3>
+
+      <input placeholder="Name" [(ngModel)]="newProduct.name">
+      <input placeholder="Image URL" [(ngModel)]="newProduct.image">
+
+      <select [(ngModel)]="newProduct.category">
+        <option>Women</option>
+        <option>Men</option>
+        <option>Kids</option>
+      </select>
+
+      <select [(ngModel)]="newProduct.subCategory">
+        <option *ngFor="let s of subCategories[newProduct.category]">
+          {{ s }}
+        </option>
+      </select>
+
+      <input type="number" placeholder="Price" [(ngModel)]="newProduct.price">
+
+      <!-- UPDATED BUTTON -->
+      <button (click)="addProduct()">Add Product</button>
+    </div>
+
+    <!-- CARDS -->
+    <div class="card-grid" *ngIf="currentView !== 'manage'">
+      <div class="card" *ngFor="let p of getFilteredProducts()">
+        <img [src]="p.image">
+        <h4>{{ p.name }}</h4>
+        <p>₹{{ p.price }}</p>
+      </div>
+    </div>
+
+  </main>
+</div>
